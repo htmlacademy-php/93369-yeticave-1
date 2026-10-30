@@ -1,45 +1,47 @@
-CREATE DATABASE IF NOT EXISTS ski_auction_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; 
+CREATE DATABASE IF NOT EXISTS ski_auction_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-USE ski_auction_db; 
+USE ski_auction_db;
 
-CREATE TABLE IF NOT EXISTS categories ( 
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    name VARCHAR(255) NOT NULL UNIQUE, 
-    code VARCHAR(50) NOT NULL UNIQUE 
+CREATE TABLE IF NOT EXISTS categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    code VARCHAR(50) NOT NULL UNIQUE
 ); 
 
-CREATE TABLE IF NOT EXISTS users ( 
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-    email VARCHAR(128) NOT NULL UNIQUE, 
-    name VARCHAR(128) NOT NULL, 
-    password_hash VARCHAR(255) NOT NULL, 
-    contacts TEXT NOT NULL 
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    email VARCHAR(128) NOT NULL UNIQUE,
+    name VARCHAR(128) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    contacts TEXT NOT NULL
 ); 
 
-CREATE TABLE IF NOT EXISTS lots ( 
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-    title VARCHAR(255) NOT NULL, 
-    description TEXT NOT NULL, 
-    image_url VARCHAR(255) NOT NULL, 
-    start_price INT NOT NULL, 
-    bid_step INT NOT NULL, 
-    end_date DATETIME NOT NULL, 
-    category_id INT NOT NULL, 
-    author_id INT NOT NULL, 
-    winner_id INT DEFAULT NULL, 
-    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT, 
-    FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE, 
-    FOREIGN KEY (winner_id) REFERENCES users(id) ON DELETE SET NULL 
+CREATE TABLE IF NOT EXISTS lots (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    start_price INT NOT NULL,
+    bid_step INT NOT NULL,
+    end_date DATETIME NOT NULL,
+    category_id INT NOT NULL,
+    seller_id INT NOT NULL,
+    buyer_id INT DEFAULT NULL,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT,
+    FOREIGN KEY (seller_id) REFERENCES users(id) ON DELETE RESTRICT,
+    FOREIGN KEY (buyer_id) REFERENCES users(id) ON DELETE RESTRICT
 ); 
 
-CREATE TABLE IF NOT EXISTS bids ( 
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-    amount INT NOT NULL, 
-    user_id INT NOT NULL, 
-    lot_id INT NOT NULL, 
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE, 
-    FOREIGN KEY (lot_id) REFERENCES lots(id) ON DELETE CASCADE 
+CREATE TABLE IF NOT EXISTS bids (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    amount INT NOT NULL,
+    user_id INT NOT NULL,
+    lot_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE RESTRICT,
+    FOREIGN KEY (lot_id) REFERENCES lots(id) ON DELETE CASCADE
 );
+
+

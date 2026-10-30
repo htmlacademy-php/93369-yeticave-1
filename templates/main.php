@@ -1,7 +1,7 @@
 <?php
 
 /** @var array $categories  List of categories */
-/** @var array $goods_list List of goods */
+/** @var array $lots_list List of goods */
 
 ?>
 <section class="promo">
@@ -22,7 +22,7 @@
     </div>
     <ul class="lots__list">
         <!--заполните этот список из массива с товарами-->
-        <?php foreach ($goods_list as $good): ?>
+        <?php foreach ($lots_list as $good): ?>
             <li class="lots__item lot">
                 <div class="lot__image">
                     <img src="<?= esc($good["imgUrl"]) ?>" width="350" height="260" alt="">
