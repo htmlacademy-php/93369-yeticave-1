@@ -2,6 +2,8 @@
 
 /** @var string $title */
 /** @var string $content */
+/** @var string $container */
+/** @var string $nav_list */
 /** @var array $categories  List of categories */
 
 $is_auth = rand(0, 1);
@@ -57,20 +59,11 @@ $user_name = 'Александр'; // укажите здесь ваше имя
             </div>
         </header>
 
-        <main class="container"><?= $content ?></main>
+        <main class="<?= $container ?>"><?= $content ?></main>
     </div>
 
     <footer class="main-footer">
-        <nav class="nav">
-            <ul class="nav__list container">
-                <!--заполните этот список из массива категорий-->
-                <?php foreach ($categories as $category): ?>
-                    <li class="nav__item">
-                        <a href="pages/all-lots.html"><?= esc($category["name"]) ?></a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </nav>
+        <?=  $nav_list ?>
         <div class="main-footer__bottom container">
             <div class="main-footer__copyright">
                 <p>© 2019, YetiCave</p>
