@@ -5,4 +5,5 @@ declare(strict_types=1);
 return [
     "/" => "home.php",
     "/lot" => "lot.php",
+    "/add" => "add.php",
 ];

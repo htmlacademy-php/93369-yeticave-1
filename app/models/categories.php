@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function categories(): array {
+function get_categories(): array {
     $sql = "SELECT * FROM categories";
 
     $stmt = db_get_prepare_stmt(db_get_link(), $sql);
