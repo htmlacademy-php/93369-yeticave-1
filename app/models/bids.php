@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function bids_by_lot_id(int $id): array {
+function get_bids_by_lot_id(int $id): array {
     $sql = "SELECT name, amount, bids.created_at
     FROM bids
     JOIN users ON  bids.user_id = users.id
@@ -16,7 +16,7 @@ function bids_by_lot_id(int $id): array {
     return $bids;
 }
 
-function max_bid_by_lot_id(int $id): int {
+function get_max_bid_by_lot_id(int $id): int {
     $sql = "SELECT amount
     FROM bids
     JOIN users ON  bids.user_id = users.id

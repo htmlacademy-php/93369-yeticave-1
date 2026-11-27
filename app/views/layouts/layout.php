@@ -5,6 +5,7 @@
 /** @var string $container */
 /** @var string $nav_list */
 /** @var array $categories  List of categories */
+/** @var array $scripts */
 
 $is_auth = rand(0, 1);
 
@@ -17,8 +18,13 @@ $user_name = 'Александр'; // укажите здесь ваше имя
 <head>
     <meta charset="UTF-8">
     <title><?= $title ?></title>
-    <link href="../css/normalize.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="/css/normalize.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <?php if(!empty($styles)): ?>
+        <?php foreach($styles as $style): ?>
+            <link href="<?= $style ?>" rel="stylesheet">
+        <?php endforeach; ?>
+    <?php endif; ?>
 </head>
 
 <body>
@@ -117,9 +123,11 @@ $user_name = 'Александр'; // укажите здесь ваше имя
             </div>
         </div>
     </footer>
-
-    <script src="flatpickr.js"></script>
-    <script src="script.js"></script>
+    <?php if(!empty($scripts)): ?>
+        <?php foreach($scripts as $script): ?>
+            <script src="<?=  $script ?>"></script>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </body>
 
 </html>

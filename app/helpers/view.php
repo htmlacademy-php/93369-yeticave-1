@@ -27,7 +27,7 @@ function include_template(string $name, array $data = []): string {
 
 function render_404() {
     http_response_code(404);
-    $categories = categories();
+    $categories = get_categories();
     $nav_list = include_template("templates/nav_list.php", compact("categories"));
     $content = include_template("errors/404.php", compact("nav_list"));
     $layout = include_template("layouts/layout.php", compact("content", "categories", "nav_list"));

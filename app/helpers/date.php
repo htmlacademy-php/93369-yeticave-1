@@ -20,7 +20,8 @@ function is_date_valid(string $date) : bool {
     $format_to_check = 'Y-m-d';
     $dateTimeObj = date_create_from_format($format_to_check, $date);
 
-    return $dateTimeObj !== false && array_sum(date_get_last_errors()) === 0;
+    $errors = [];
+    return $dateTimeObj !== false && ($errors = date_get_last_errors()) === false || array_sum($errors) === 0;;
 }
 
 function get_time_remiaining(string $expiry_date): array
