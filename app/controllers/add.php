@@ -81,11 +81,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 $nav_list = include_template("templates/nav_list.php", compact("categories"));
 $title = "Добавление лота";
-$container = "";
 
 $content = include_template("pages/add.php", compact("categories", "nav_list", "lot", "errors"));
 $styles = ["/css/flatpickr.min.css"];
 $scripts = ["/flatpickr.js", "/script.js"];
 
-$layout = include_template("layouts/layout.php", compact("title", "container", "content", "categories", "nav_list", "styles", "scripts"));
+$layout = include_template("layouts/layout.php", compact("title", "content", "categories", "nav_list", "styles", "scripts"));
 print($layout);

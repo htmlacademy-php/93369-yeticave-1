@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-function get_fresh_lots(): array {
+function get_fresh_lots(): array
+{
     $sql = "SELECT lots.id, title, image_url, start_price, expiry_date, name AS category_name
         FROM lots
         JOIN categories ON lots.category_id = categories.id
@@ -16,7 +17,8 @@ function get_fresh_lots(): array {
     return $lots_list;
 }
 
-function get_lot_by_id(int $id): array | false {
+function get_lot_by_id(int $id): array | false
+{
     $sql = "SELECT title, image_url, start_price, description, expiry_date, name AS category_name
     FROM lots
     JOIN categories ON lots.category_id = categories.id
