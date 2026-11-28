@@ -7,7 +7,7 @@
 /** @var array $categories  List of categories */
 /** @var array $scripts */
 
-$is_auth = rand(0, 1);
+$is_auth = false;
 
 $user_name = 'Александр'; // укажите здесь ваше имя
 
@@ -20,8 +20,8 @@ $user_name = 'Александр'; // укажите здесь ваше имя
     <title><?= $title ?></title>
     <link href="/css/normalize.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
-    <?php if(!empty($styles)): ?>
-        <?php foreach($styles as $style): ?>
+    <?php if (!empty($styles)): ?>
+        <?php foreach ($styles as $style): ?>
             <link href="<?= $style ?>" rel="stylesheet">
         <?php endforeach; ?>
     <?php endif; ?>
@@ -33,14 +33,14 @@ $user_name = 'Александр'; // укажите здесь ваше имя
         <header class="main-header">
             <div class="main-header__container container">
                 <h1 class="visually-hidden">YetiCave</h1>
-                <a class="main-header__logo">
+                <a class="main-header__logo" href="/">
                     <img src="../img/logo.svg" width="160" height="39" alt="Логотип компании YetiCave">
                 </a>
                 <form class="main-header__search" method="get" action="https://echo.htmlacademy.ru" autocomplete="off">
                     <input type="search" name="search" placeholder="Поиск лота">
                     <input class="main-header__search-btn" type="submit" name="find" value="Найти">
                 </form>
-                <a class="main-header__add-lot button" href="pages/add-lot.html">Добавить лот</a>
+                <a class="main-header__add-lot button" href="/add">Добавить лот</a>
 
                 <nav class="user-menu">
 
@@ -54,7 +54,7 @@ $user_name = 'Александр'; // укажите здесь ваше имя
                     <?php else: ?>
                         <ul class="user-menu__list">
                             <li class="user-menu__item">
-                                <a href="#">Регистрация</a>
+                                <a href="/sign-up">Регистрация</a>
                             </li>
                             <li class="user-menu__item">
                                 <a href="#">Вход</a>
@@ -65,11 +65,11 @@ $user_name = 'Александр'; // укажите здесь ваше имя
             </div>
         </header>
 
-        <main class="<?= $container ?>"><?= $content ?></main>
+        <main class="<?= $container ?? "" ?>"><?= $content ?></main>
     </div>
 
     <footer class="main-footer">
-        <?=  $nav_list ?>
+        <?= $nav_list ?>
         <div class="main-footer__bottom container">
             <div class="main-footer__copyright">
                 <p>© 2019, YetiCave</p>
@@ -109,7 +109,7 @@ $user_name = 'Александр'; // укажите здесь ваше имя
                     </svg>
                 </a>
             </div>
-            <a class="main-footer__add-lot button" href="add-lot.html">Добавить лот</a>
+            <a class="main-footer__add-lot button" href="/add">Добавить лот</a>
             <div class="main-footer__developed-by">
                 <span class="visually-hidden">Разработано:</span>
                 <a class="logo-academy" href="https://htmlacademy.ru/intensive/php">
@@ -123,9 +123,9 @@ $user_name = 'Александр'; // укажите здесь ваше имя
             </div>
         </div>
     </footer>
-    <?php if(!empty($scripts)): ?>
-        <?php foreach($scripts as $script): ?>
-            <script src="<?=  $script ?>"></script>
+    <?php if (!empty($scripts)): ?>
+        <?php foreach ($scripts as $script): ?>
+            <script src="<?= $script ?>"></script>
         <?php endforeach; ?>
     <?php endif; ?>
 </body>

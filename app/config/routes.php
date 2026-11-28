@@ -6,4 +6,5 @@ return [
     "/" => "home.php",
     "/lot" => "lot.php",
     "/add" => "add.php",
+    "/sign-up" => "sign-up.php",
 ];
